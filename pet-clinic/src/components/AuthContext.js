@@ -9,20 +9,19 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(
-    () => localStorage.getItem("token") || null
-  );
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [fetchingData, setFetchingData] = useState(false);
   const [error, setError] = useState(null);
-  const [currentUser, setCurrentUser] = useState();
   const navigate = useNavigate();
 
-  // Everytime token refreshes = is set or component mounts 
+  // Everytime token is changed or component mounts
   // Also everytime user refreshes
+  // Note that this/redirecting doesn't work if there is a token but it's not correct
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
     } else {
+      localStorage.removeItem("userEmail");
       localStorage.removeItem("token");
       navigate("/login");
     }
@@ -53,6 +52,7 @@ const AuthProvider = ({ children }) => {
 
       const data = await response.json();
       console.log("Login successful. Access Token:", data.access_token);
+      localStorage.setItem("userEmail", email);
       setToken(data.access_token);
       setError(null);
     } catch (error) {
@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={value}>
       {/* Only allow access if there is a token*/}
-      {token ? children : <Login />} 
+      {token ? children : <Login />}
     </AuthContext.Provider>
   );
 };
