@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { Card, Button, Form, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../components/AuthContext';
+import { Container } from "react-bootstrap";
+
 
 export default function Login() {
   const { login, error, fetchingData, token } = useAuth();
@@ -22,6 +24,10 @@ export default function Login() {
   };
 
   return (
+    <Container
+      style={{ minHeight: "100vh" }}
+      className="d-flex align-items-center justify-content-center"
+    >
     <div className="w-100" style={{ maxWidth: "400px" }}>
       <Card>
         <Card.Body>
@@ -43,5 +49,6 @@ export default function Login() {
         </Card.Body>
       </Card>
     </div>
+    </Container>
   );
 }
