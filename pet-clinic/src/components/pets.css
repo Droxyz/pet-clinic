@@ -1,0 +1,223 @@
+/* INFO CARDS */
+.info-cards-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
+  padding: 20px;
+  gap: 20px; /* Add space between cards when they wrap */
+}
+
+.info-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  text-align: end;
+  justify-content: space-between;
+  flex-basis: calc(33.333% - 40px); /* Adjust for gap */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.info-card h3 {
+  font-size: 18px;
+  text-shadow: -1px 1px 1px rgb(0, 0, 0);
+  color: white;
+}
+
+.info-card p {
+  color: whitesmoke;
+}
+
+#card-image {
+  max-height: 50px;
+  width: auto;
+  object-fit: cover;
+}
+
+.search-bar {
+  display: flex;
+  flex-shrink: 1;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.search-bar input {
+  border-radius: 0px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid green;
+}
+
+.search-icon {
+  color: #333;
+}
+
+.filters {
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .info-card {
+    flex-basis: calc(50% - 40px); /* 2 cards per row on medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .info-card {
+    flex-basis: calc(100% - 40px); /* 1 card per row on small screens */
+  }
+}
+
+.bottom-border {
+  width: 50%;
+  border-bottom: 2px solid green; /* Adjust the thickness and style as needed */
+}
+/* INFO CARDS ABOVE */
+
+/* PET CONTAINER */
+.pets-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+}
+
+.card-img {
+  position: absolute;
+  width: 50px;
+  z-index: 1;
+  pointer-events: none;
+}
+.card-img.cat {
+  transform: translate(-35%, -130%);
+}
+.card-img.dog {
+  transform: translate(-40%, -120%);
+}
+
+.pet-card {
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.pet-card.alive {
+  box-shadow: 1px 1px 5px green;
+  background-color: rgba(255, 255, 255, 0.068);
+}
+
+.pet-card.deceased {
+  opacity: 0.7;
+  filter: grayscale(100%);
+  h3.pet-name {
+    text-decoration: line-through; /* Add a line through the pet's name */
+    color: rgb(189, 61, 61); /* Change text color to red for deceased pets (optional) */
+  }
+  #card-img {
+  }
+}
+
+.pet-card.missing {
+  box-shadow: 1px 1px 5px red;
+}
+
+.pet-card.other {
+  box-shadow: 1px 1px 5px gray;
+}
+
+.pet-name {
+  color: #333;
+  margin: 0;
+}
+
+.pet-type,
+.pet-unique-id,
+.pet-dob,
+.pet-status {
+  color: #666;
+  margin: 5px 0;
+}
+
+.status-alive {
+  color: green;
+}
+
+.status-not-alive {
+  color: red;
+}
+
+/* PET CONTAINER ABOVE */
+
+/* EDIT PET CARD */
+.edit-pet-card {
+  border: 1px solid #bbb;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  margin: 20px;
+}
+
+select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+  padding-right: 30px;
+
+  :disabled {
+    background-color: #f5f5f5; /* Change background color for disabled state */
+    cursor: not-allowed; /* Change cursor for disabled state */
+  }
+}
+
+.edit-pet-card label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.edit-pet-card button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.edit-pet-card .save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-pet-card .cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.edit-pet-card button:hover {
+  opacity: 0.9;
+}
+
+.pet-card.edit-active {
+  opacity: 1;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  filter: none;
+}
+
+.pet-card.faded {
+  opacity: 0.5;
+}
+
+/* EDIT PET CARD ABOVE */
+
+.save-trash {
+  transform: translate(10%, -30%);
+}
