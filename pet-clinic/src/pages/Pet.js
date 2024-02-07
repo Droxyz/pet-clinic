@@ -6,11 +6,12 @@ import PawImg from "../images/pawprint.png";
 import DatePicker from "react-datepicker";
 import { faker } from "@faker-js/faker";
 import { FaPlus } from "react-icons/fa";
+import { usePets } from "./DashBoard";
 
 export default function Pet() {
   const navigate = useNavigate();
   const { outletPet } = useOutletContext();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { isAdmin } = usePets();
   const [randomText, setRandomText] = useState(null);
   const [pet, setPet] = useState({
     name: "NOT FOUND",

@@ -1,28 +1,20 @@
 import { FaSearch, FaPen, FaToggleOn, FaToggleOff } from "react-icons/fa"; // Importing the search icon
 import { React, useEffect, useState } from "react";
-import { getOwnerCount } from "./petFunctions";
 import CatImg from "../images/cat.png";
 import DogImg from "../images/dogg.png";
+import { usePets } from "../pages/DashBoard";
 
 // LOGIC: whenever backend is called, we update original pets.
 
 export default function AllPets({ pets, updatePet }) {
   const [filteredPets, setFilteredPets] = useState(pets);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { isAdmin } = usePets();
   const [editingPet, setEditingPet] = useState(null);
   const [filters, setFilters] = useState({
     isMinimal: false,
     onlyAlive: false, // active, inactive
     nextVisit: null, // date
   });
-
-  // Because pets is fetched with async, we have to update whenever it changes. Also good practise
-  useEffect(() => {
-    if (getOwnerCount({ pets }) > 1) {
-      setIsAdmin(true);
-    }
-    applyFilters();
-  }, [pets]);
 
   useEffect(() => {
     applyFilters();
@@ -268,9 +260,7 @@ export default function AllPets({ pets, updatePet }) {
 
             {!filters.isMinimal && (
               <>
-                {isAdmin && (
-                  <p className="pet-text">Owner ID: {pet.ownerId}</p>
-                )}
+                {isAdmin && <p className="pet-text">Owner ID: {pet.ownerId}</p>}
                 <p className="pet-text">Next visit: {pet.date}</p>
                 <p className="pet-text">Date of Birth: {pet.dob}</p>
                 <div className="d-flex gap-3">

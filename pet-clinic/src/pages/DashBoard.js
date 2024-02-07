@@ -33,8 +33,8 @@ export const PetProvider = ({ children }) => {
 
       const data = await response.json();
       setPets(data); // Update the state directly with the fetched data
-      if (getOwnerCount(pets) > 1) setIsAdmin(true);
       console.log({ message: "Pets successfully Fetched", data });
+      if (getOwnerCount({ pets: data }) > 1) setIsAdmin(true);
     } catch (error) {
       console.error("There was an error fetching the pets", error);
     }
