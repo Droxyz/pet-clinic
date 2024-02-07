@@ -13,10 +13,13 @@ export default function PetLayout() {
   const [petNumber, setPetNumber] = useState(parseInt(id, 10) || 0);
   const [inputValue, setInputValue] = useState(id || "");
 
-  const pet = useMemo(
-    () => pets.find((p) => p.id === petNumber),
-    [petNumber, pets]
-  );
+  const pet = useMemo(() => {
+    if (isAdmin) {
+      return pets.find((p) => p.id === petNumber); 
+    } else {
+      return pets[petNumber-1]; 
+    }
+  }, [petNumber, pets, isAdmin]);
 
   useEffect(() => {
     const numId = parseInt(id, 10);
@@ -33,6 +36,7 @@ export default function PetLayout() {
       if (direction === "right") value = 1;
     }
 
+    setDirection(direction);
     setPetNumber(value);
     setInputValue(value.toString());
     navigate(`/pets/${value}`, { replace: true });

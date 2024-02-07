@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { usePets } from "./DashBoard";
 
 const NewPet = () => {
+  const { isAdmin } = usePets();
   const [loading, setLoading] = useState(false);
   const [pet, setPet] = useState({
     name: "",
@@ -91,21 +92,24 @@ const NewPet = () => {
           shouldCloseOnSelect={false}
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="ownerId" className="form-label">
-          Owner ID
-        </label>
-        <input
-          type="number"
-          className="form-control"
-          id="ownerId"
-          name="ownerId"
-          value={pet.ownerId}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit" className="btn btn-primary">
+      {isAdmin && (
+        <div className="mb-3">
+          <label htmlFor="ownerId" className="form-label">
+            Owner ID
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="ownerId"
+            name="ownerId"
+            value={pet.ownerId}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      )}
+
+      <button type="submit" className="btn btn-primary" disabled={loading}>
         Add Pet
       </button>
     </form>
