@@ -6,11 +6,6 @@
   border-radius: 50%;
 }
 
-#nav-links > * {
-  position: relative;
-  text-decoration: none;
-}
-
 @media (max-width: 768px) {
   #profile-img {
     max-width: 70px;
@@ -46,11 +41,19 @@
     transform: translate(0%, 0%);
   }
 }
+.form-control:focus {
+  box-shadow: none;
+}
+
 .nav-item {
   text-align: center;
 }
 
-/* Style the nav-link (link itself) */
+#nav-links > * {
+  position: relative;
+  text-decoration: none;
+}
+
 .nav-link {
   align-items: center;
   color: white;
@@ -62,14 +65,12 @@
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
 
-/* Style the active nav-link */
 .nav-link.active {
   color: black;
   background: white;
   border-radius: 5px;
 }
 
-/* Style the :active state of nav-link (when clicked) */
 .nav-link:active {
   color: blue;
   background: white;
@@ -105,5 +106,36 @@
 }
 
 .cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
   cursor: pointer;
 }

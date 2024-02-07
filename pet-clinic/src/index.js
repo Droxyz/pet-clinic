@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import App from './pages/App';
 import './components/styles.css'
+import "./components/pets.css";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

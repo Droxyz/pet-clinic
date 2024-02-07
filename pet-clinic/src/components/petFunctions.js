@@ -1,14 +1,8 @@
-import "./pets.css";
 import React, { useState } from "react";
 import ownerImage from "../images/owner.png";
 import visitImage from "../images/visit.png";
 import pawImage from "../images/pawprint.png";
-import { FaSave, FaTimes } from "react-icons/fa";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaInfoCircle } from "react-icons/fa";
-import { EditPet } from "./AllPets";
-import { usePets } from "../../src/pages/DashBoard";
 
 export function getOwnerCount({ pets }) {
   let owners = [];
@@ -34,15 +28,14 @@ export async function getPetDetails(id) {
     }
 
     const responseData = await response.json();
-    console.log(responseData);
-    // Handle the response data as needed
+    return responseData; // Return the fetched data
   } catch (error) {
-    console.error("There was an error updating the pet status:", error);
+    console.error("There was an error fetching pet details:", error);
+    throw error; // Rethrow the error to handle it in the calling code
   }
 }
 
 export async function putPet(pet) {
-
   try {
     const response = await fetch("http://localhost:4000/pets/" + pet.id, {
       method: "PUT",
@@ -77,21 +70,21 @@ export const InfoCards = ({
   return (
     <div className="info-cards-container">
       <div className="info-card bg-primary">
-        <img src={ownerImage} alt="owner" id="card-image"></img>
+        <img src={ownerImage} alt="owner" id="info-card-image"></img>
         <div>
           <h3>{ownersCount}</h3>
           <p>Reg. Owners</p>
         </div>
       </div>
       <div className="info-card bg-secondary">
-        <img src={visitImage} alt="owner" id="card-image"></img>
+        <img src={visitImage} alt="owner" id="info-card-image"></img>
         <div>
           <h3>{futureVisits}</h3>
           <p>Visits / {totalVisits}</p>
         </div>
       </div>
       <div className="info-card bg-danger">
-        <img src={pawImage} alt="owner" id="card-image"></img>
+        <img src={pawImage} alt="owner" id="info-card-image"></img>
         <div>
           <h3>{petsCount}</h3>
           <p>Reg. Pets</p>

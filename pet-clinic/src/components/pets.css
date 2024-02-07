@@ -7,6 +7,7 @@
 }
 
 .info-card {
+  flex: 1 1 250px;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 8px;
@@ -16,58 +17,27 @@
   justify-content: space-between;
   flex-basis: calc(33.333% - 40px); /* Adjust for gap */
   box-sizing: border-box; /* Include padding and border in the width */
+  h3 {
+    font-size: 18px;
+    text-shadow: -1px 1px 1px rgb(0, 0, 0);
+    color: white;
+  }
+
+  p {
+    color: whitesmoke;
+  }
 }
 
-.info-card h3 {
-  font-size: 18px;
-  text-shadow: -1px 1px 1px rgb(0, 0, 0);
-  color: white;
-}
-
-.info-card p {
-  color: whitesmoke;
-}
-
-#card-image {
+#info-card-image {
   max-height: 50px;
   width: auto;
   object-fit: cover;
 }
 
-.search-bar {
-  display: flex;
-  flex-shrink: 1;
-  align-items: center;
-  padding-right: 20px;
-}
-
-.search-bar input {
-  border-radius: 0px;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid green;
-}
-
-.search-icon {
-  color: #333;
-}
-
-.filters {
-  padding-left: 20px;
-  padding-bottom: 20px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .info-card {
-    flex-basis: calc(50% - 40px); /* 2 cards per row on medium screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .info-card {
-    flex-basis: calc(100% - 40px); /* 1 card per row on small screens */
-  }
+.form-control.petlayout {
+  width: 50px;
+  text-align: center;
+  padding: 0;
 }
 
 .bottom-border {
@@ -98,30 +68,29 @@
 }
 
 .pet-card {
+  position: relative;
   padding: 15px;
   border-radius: 8px;
 }
-
 .pet-card.alive {
   box-shadow: 1px 1px 5px green;
   background-color: rgba(255, 255, 255, 0.068);
 }
-
 .pet-card.deceased {
   opacity: 0.7;
   filter: grayscale(100%);
   h3.pet-name {
     text-decoration: line-through; /* Add a line through the pet's name */
-    color: rgb(189, 61, 61); /* Change text color to red for deceased pets (optional) */
-  }
-  #card-img {
+    color: rgb(
+      189,
+      61,
+      61
+    ); /* Change text color to red for deceased pets (optional) */
   }
 }
-
 .pet-card.missing {
   box-shadow: 1px 1px 5px red;
 }
-
 .pet-card.other {
   box-shadow: 1px 1px 5px gray;
 }
@@ -131,10 +100,7 @@
   margin: 0;
 }
 
-.pet-type,
-.pet-unique-id,
-.pet-dob,
-.pet-status {
+.pet-text {
   color: #666;
   margin: 5px 0;
 }
@@ -217,7 +183,68 @@ select {
 }
 
 /* EDIT PET CARD ABOVE */
+.plus-sign-overlay {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.827); /* Adjust the background color and opacity as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.save-trash {
-  transform: translate(10%, -30%);
+.plus-sign {
+  font-size: 48px; /* Adjust the font size as needed */
+  color: white; /* Color of the plus sign */
+}
+/* Left animation */
+@keyframes leftTransition {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Right animation */
+@keyframes rightTransition {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Top to bottom animation */
+@keyframes topToBottomTransition {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animations based on direction */
+.left-animation {
+  animation: leftTransition 0.3s ease-in-out;
+}
+
+.right-animation {
+  animation: rightTransition 0.3s ease-in-out;
+}
+
+.top-to-bottom-animation {
+  animation: topToBottomTransition 0.3s;
 }

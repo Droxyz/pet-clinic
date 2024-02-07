@@ -63,6 +63,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+
   // Provider values which we use with custom useAuth hook
   const value = {
     login,

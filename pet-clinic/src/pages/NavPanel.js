@@ -1,9 +1,7 @@
 import React from "react";
 import doctorImage from "../images/doctor.png";
 import ownerImage from "../images/owner.png";
-import pawprint2 from "../images/pawprint2.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../components/AuthContext";
 import {
   FaSignOutAlt,
   FaHome,
@@ -11,13 +9,6 @@ import {
   FaSortDown,
   FaCalendar,
 } from "react-icons/fa";
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownDivider,
-  DropdownMenu,
-  DropdownToggle,
-} from "react-bootstrap";
 
 export default function NavPanel() {
   const userEmail = localStorage.getItem("userEmail") || null;

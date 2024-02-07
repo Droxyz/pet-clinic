@@ -1,9 +1,11 @@
-import { usePets } from "./DashBoard";
 import { InfoCards, getOwnerCount } from "../components/petFunctions";
 import AllPets from "../components/AllPets";
+import { usePets } from "./DashBoard";
+import PetList from "../components/PetList";
 
-export default function MainView() {
-  const { pets } = usePets();
+export default function Home() {
+
+  const { pets, updatePet } = usePets();
 
   return (
     <>
@@ -13,7 +15,7 @@ export default function MainView() {
         totalVisits={2}
         petsCount={pets.length}
       />
-      <AllPets pets={pets}/>
+      <AllPets pets={pets} updatePet={updatePet}/>
     </>
   );
 }

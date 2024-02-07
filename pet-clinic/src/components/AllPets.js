@@ -3,11 +3,10 @@ import { React, useEffect, useState } from "react";
 import { getOwnerCount } from "./petFunctions";
 import CatImg from "../images/cat.png";
 import DogImg from "../images/dogg.png";
-import { usePets } from "../../src/pages/DashBoard";
 
 // LOGIC: whenever backend is called, we update original pets.
 
-export default function AllPets({ pets }) {
+export default function AllPets({ pets, updatePet }) {
   const [filteredPets, setFilteredPets] = useState(pets);
   const [isAdmin, setIsAdmin] = useState(false);
   const [editingPet, setEditingPet] = useState(null);
@@ -16,7 +15,6 @@ export default function AllPets({ pets }) {
     onlyAlive: false, // active, inactive
     nextVisit: null, // date
   });
-  const { updatePet } = usePets();
 
   // Because pets is fetched with async, we have to update whenever it changes. Also good practise
   useEffect(() => {
@@ -178,22 +176,28 @@ export default function AllPets({ pets }) {
     <>
       <h1>List of pets</h1>
 
-      <div className="filters d-flex flex-column flex-sm-row gap-3">
-        <div className=" search-bar d-flex gap-2">
+      <div className="d-flex flex-column flex-sm-row gap-3 p-3">
+        <div className="d-flex gap-2 align-items-center">
           <input
             type="text"
             className="form-control p-1"
+            style={{
+              border: "none",
+              outline: "none",
+              borderBottom: "1px solid green",
+              borderRadius: 0,
+            }}
             placeholder="Search here..."
             onInput={filterPets}
           />
 
           <div className="input-group-append">
             <span className="">
-              <FaSearch className="search-icon" />
+              <FaSearch />
             </span>
           </div>
         </div>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-3 ">
           <button
             onClick={() =>
               setFilters((prevFilters) => ({
@@ -254,21 +258,21 @@ export default function AllPets({ pets }) {
               )}
             </div>
 
-            <p className="pet-type">
+            <p className="pet-text">
               {filters.isMinimal ? pet.petType + ", ID: " + pet.id : ""}
               {!filters.isMinimal ? "Type: " + pet.petType : ""}
             </p>
-            <p className="pet-type">
+            <p className="pet-text">
               {!filters.isMinimal ? "Pet ID: " + pet.id : ""}
             </p>
 
             {!filters.isMinimal && (
               <>
                 {isAdmin && (
-                  <p className="pet-unique-id">Owner ID: {pet.ownerId}</p>
+                  <p className="pet-text">Owner ID: {pet.ownerId}</p>
                 )}
-                <p className="pet-unique-id">Next visit: {pet.date}</p>
-                <p className="pet-unique-id">Date of Birth: {pet.dob}</p>
+                <p className="pet-text">Next visit: {pet.date}</p>
+                <p className="pet-text">Date of Birth: {pet.dob}</p>
                 <div className="d-flex gap-3">
                   <select
                     id={pet.id}
@@ -289,7 +293,7 @@ export default function AllPets({ pets }) {
 
                 {isAdmin && (
                   <div className="d-flex mt-4 flex-column">
-                    <p className="pet-unique-id">Notes:</p>
+                    <p className="pet-text">Notes:</p>
 
                     <textarea
                       onInput={(e) => handleNotesChange(e, pet)}
